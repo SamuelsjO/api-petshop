@@ -1,0 +1,29 @@
+const Sequelize = require('sequelize')
+const instancia = require('../../banco-de-dados/config-bd')
+
+
+const colunas = {
+    empresa: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    categoria: {
+        type: Sequelize.ENUM('raçao', 'brinquedos'),
+        allowNull: false
+    }
+}
+
+const opcoes = {
+    freezeTableName: true,
+    tableName: 'fornecedor',
+    timestamps: true,
+    createdAt: 'dataCriacao',
+    updatedAt: 'dataAtualizacao',
+    version: 'versao'
+}
+
+module.exports = instancia.define('fornecedor', colunas, opcoes)
