@@ -1,8 +1,10 @@
+const { response } = require('express')
 const Modelo = require('./ModelTabelaFornecedor')
+const NaoEncontrado = require('../../erros/NaoEncotrado')
 
 module.exports = {
     listar() {
-        return Modelo.findAll()
+        return Modelo.findAll({ raw: true })
 
     },
 
@@ -18,7 +20,7 @@ module.exports = {
         })
 
         if (!encontrado) {
-            throw new Error('Fornecedor não encontrado')
+            throw new NaoEncontrado()
         }
 
         return encontrado
